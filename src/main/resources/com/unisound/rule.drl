@@ -1,0 +1,54 @@
+package com.unisound
+
+
+declare Address
+ @author(quzishen) // 元数据，仅用于描述信息
+ @createTime(2011-1-24)
+ city : String @maxLengh(5)
+ postno : int
+end
+
+// 可以定义函数使用
+function void console (){
+
+   System.out.println();
+
+     Util.printMsg();
+
+}
+
+rule 'x'
+  no-loop true
+  when
+//    $drone: Drone(
+//      normalCasesEnum == "asdasdasd"
+//    )
+    eval(true)
+  then
+    console();
+    Address address = new Address();
+    address.setCity("asdasdasdasdasdasdas");
+//    $drone.setProcessingStatusEnum(ProcessingStatusEnum.End);
+    System.out.println("收起落架动作完毕");
+end
+
+//rule 'y'
+//  when
+//    $drone: Drone(
+//      normalCasesEnum == NormalCasesEnum.Emergency_Landing_Gear,
+//      emergencyLandingGearIsExecuted == false
+//    )
+//  then
+//    $drone.setProcessingStatusEnum(ProcessingStatusEnum.Need_Confirm);
+//end
+//
+//rule 'z'
+//  when
+//    $drone: Drone(
+//      height > 100 , height < 200 ,
+//      speed  > 300 , speed  < 400
+//    )
+//  then
+//    $drone.setProcessingStatusEnum(ProcessingStatusEnum.End);
+//    System.out.println("收起落架命令");
+//end

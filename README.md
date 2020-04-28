@@ -1,2 +1,0 @@
-# drools-demo
-drools-demo
