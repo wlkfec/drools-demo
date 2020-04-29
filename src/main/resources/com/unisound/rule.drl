@@ -1,5 +1,7 @@
 package com.unisound
+import java.util.Date
 
+global java.text.SimpleDateFormat fmt;
 
 declare Address
  @author(quzishen) // 元数据，仅用于描述信息
@@ -8,29 +10,100 @@ declare Address
  postno : int
 end
 
+query "NormalCasesEnumisEmergency_Landing_Gear"
+    $drone : Drone( normalCasesEnum == NormalCasesEnum.Emergency_Landing_Gear )
+end
+
 // 可以定义函数使用
 function void console (){
-
    System.out.println();
-
      Util.printMsg();
+}
 
+function void printMsg(String name, String desc) {
+    System.out.println(name + "\t" + desc);
 }
 
 rule 'x'
   no-loop true
   when
-//    $drone: Drone(
-//      normalCasesEnum == "asdasdasd"
-//    )
-    eval(true)
+    $drone: Drone(
+      normalCasesEnum == NormalCasesEnum.Emergency_Landing_Gear
+    )
+//    eval(true)
   then
-    console();
-    Address address = new Address();
-    address.setCity("asdasdasdasdasdasdas");
+//    console();
+//    Address address = new Address();
+//    address.setCity("asdasdasdasdasdasdas");
 //    $drone.setProcessingStatusEnum(ProcessingStatusEnum.End);
     System.out.println("收起落架动作完毕");
 end
+
+
+//rule "timer"
+//	// 定时器的两种类别
+//	// 	1. java.util.Timer
+//	//		1. 定时执行
+//	//		2. 重复执行
+//	//	2. crontab
+//	//		linux上crontab形式的定时
+//	//		也同时支持定时和重复两种
+//
+//
+//	// Timer
+//	// 1. 定时执行
+//	//		timer(int: delay)
+//	//		关键字就是timer,但是不会有粗体提示
+//	//		同java.util.Timer,单个参数表示的是延时时间，延时指定时间之后再执行程序，从而达到延时的目的
+//	//		注意关键字 int,还有冒号
+//	//	2. 重复执行
+//	//		timer(int: delay interval)
+//	//		还是java.util.Timer的用法
+//	//		框架还是不变，第一个参数表示延时时间， 第二个表示重复执行间隔
+//
+//
+//
+//	// crontab
+//	// 1. 基本结构
+//	//		timer(cron: * * * * * ?)
+//	//		1. 主关键字一致，类型通过关键字区别  cron/int
+//	//		2. 参数类型和linux的crontab任务写法一致,末尾多了个问号
+//	//	2. 参数解释
+//	//		0. 对应
+//	// 			秒 分 时 天 月
+//	//		1. 定时执行
+//	//			比如：三月二十八日二十三点四十五分五十八秒  ==>  58 45 23 28 3
+//	//			到了指定时间，就会自动执行任务
+//	//			ps: 多点定时   三点和五点和八点整  ==>  0 0 3,5,8 * *
+//	//		2. 周期执行
+//	//			一个除就能够表示"每",单位当然就是看所占的位置了
+//	//			每二十秒： */20 * * * *
+//	//	3. 对比
+//	//		1. 缺点
+//	//			和上面的定时器相比，缺点在于没有"缓冲",到了时间必定执行
+//	//		2. 有点
+//	//			1. 准时，直接定时，而不是靠延时定时
+//	//			2. 用法多样，功能强大
+//	//	4. 扩展
+//	//		1. 开关和周期
+//	//			定时器的所谓延时和周期重复是完全独立的，但是crontab锁标注的时间，是相互影响的
+//	//			把定点当做总开关，把周期当做细粒度控制开关，能够更深入的理解和利用crontab
+//	//		2.	例子
+//	//			三点五点八点时候每五分钟		* */5 3,5,8 * * *
+//
+//
+//	// 每秒报时
+//	// Timer：支持单位指定	s m h d
+//	// timer(int: 1s 1s)
+//
+//	// cron：别忘了问号，linux可没有
+//	timer(cron: */1 * * * * ?)
+//	when
+//		eval(true)
+//	then
+//		System.out.println(fmt.format(new Date()));
+//end
+
 
 //rule 'y'
 //  when

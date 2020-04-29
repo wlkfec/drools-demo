@@ -1,6 +1,14 @@
 <kmodule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://www.drools.org/xsd/kmodule">
+
     <kbase name="KBase1" default="true" packages="com.unisound">
         <ksession name="KSession1" default="true"/>
     </kbase>
+
+
+    <kbase name="PersonAgeKB" packages="person">
+        <ksession name="PersonAgeKS"/>
+    </kbase>
+
+
 </kmodule>
